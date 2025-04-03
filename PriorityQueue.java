@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Francis Olakangil / Section 001
  *
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
@@ -150,9 +150,15 @@ class PriorityQueue<E, P> {
      */
 
     public Node add(E e, P priority) {
+        Node newNode = new Node(e, priority, tree.size());
+        
+        // add new node to end of heap
+        tree.add(newNode);
 
-        // YOUR CODE GOES HERE
-        return null;
+        // revert to heap structure by pulling up new node to correct pos
+        pullUp(tree.size() - 1);
+
+        return newNode;
     }
 
 
@@ -167,8 +173,12 @@ class PriorityQueue<E, P> {
      */
 
     public boolean contains(E e) {
-
-        // ADD YOUR CODE HERE
+        // iterate thru all nodes in heap, checking if node contains e param
+        for (Node node : tree) {
+            if (node.value.equals(e)) { // basic check for node data equalling param val
+                return true;
+            }
+        }
         return false;
     }
 
